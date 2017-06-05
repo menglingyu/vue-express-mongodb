@@ -4,8 +4,8 @@
     <mu-table :fixedHeader="true" :showCheckbox="false" >
         <mu-thead>
           <mu-tr>
-            <mu-th>电影海报</mu-th>
-            <mu-th>电影名称</mu-th>
+            <mu-th>产品海报</mu-th>
+            <mu-th>产品名称</mu-th>
             <mu-th>简介</mu-th>
             <mu-th>评分</mu-th>
             <mu-th>操作</mu-th>
@@ -30,25 +30,26 @@
     <mu-float-button icon="add" class="add-movie-button" backgroundColor @click="openAddMovieModal"/>
     <!-- 添加电影表单 -->
     <vodal :show="addMovieModal" animation="slideDown" :width="500" :height="480" :closeButton="false">
-      <mu-text-field v-model="title" fullWidth icon="movie" label="电影名称" labelFloat/><br/>
-      <mu-text-field v-model="poster" fullWidth icon="picture_in_picture" label="海报地址" labelFloat/><br/>
+      <h2>填写发布信息</h2>
+      <mu-text-field v-model="title" fullWidth icon="movie" label="产品名称" labelFloat/><br/>
+      <mu-text-field v-model="poster" fullWidth icon="picture_in_picture" label="实物图片" labelFloat/><br/>
       <mu-text-field v-model="introduction"
       multiLine :rows="2" :rowsMax="6"
       fullWidth icon="description" label="简介" labelFloat/><br/>
-      <mu-text-field v-model="rating" fullWidth icon="star" label="评分" labelFloat/><br/>
+      <mu-text-field v-model="rating" fullWidth icon="star" label="成色" labelFloat/><br/>
       <mu-raised-button @click="closeModal" label="取消" icon="undo"  />
-      <mu-raised-button @click="addMovie" label="确定" icon="check" primary/>
+      <mu-raised-button @click="addMovie" label="发布" icon="check" primary/>
     </vodal>
     <!-- 编辑电影表单 -->
     <vodal :show="editMovieModal" animation="slideDown" :width="500" :height="480" :closeButton="false">
-      <mu-text-field v-model="title" fullWidth icon="movie" label="电影名称" labelFloat/><br/>
-      <mu-text-field v-model="poster" fullWidth icon="picture_in_picture" label="海报地址" labelFloat/><br/>
+      <mu-text-field v-model="title" fullWidth icon="movie" label="产品名称" labelFloat/><br/>
+      <mu-text-field v-model="poster" fullWidth icon="picture_in_picture" label="实物图片" labelFloat/><br/>
       <mu-text-field v-model="introduction"
       multiLine :rows="2" :rowsMax="6"
       fullWidth icon="description" label="简介" labelFloat/><br/>
-      <mu-text-field v-model="rating" fullWidth icon="star" label="评分" labelFloat/><br/>
+      <mu-text-field v-model="rating" fullWidth icon="star" label="成色" labelFloat/><br/>
       <mu-raised-button @click="closeModal" label="取消" icon="undo"  />
-      <mu-raised-button @click="editMovie" label="确定" icon="check" primary/>
+      <mu-raised-button @click="editMovie" label="确认修改" icon="check" primary/>
     </vodal>
   </div>
 </template>
@@ -77,7 +78,7 @@ export default {
     getMovies() {
       this.$http.get('/api/movie')
         .then(res => {
-          console.dir(res.data)
+          console.log(res,"!!!!!")
           this.movies = res.data
         })
         .catch(err => {

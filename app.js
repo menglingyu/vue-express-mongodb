@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const index = require('./router/index')
 const movie = require('./router/movie')
+const information = require('./router/information')
 
 mongoose.connect(config.mongodb)
 mongoose.Promise = global.Promise
@@ -19,6 +20,7 @@ app.use(favicon(__dirname + '/src/assets/favicon.ico'))
 app.use(express.static('dist'))
 app.use('/',index)
 app.use('/api',movie)
+app.use('/api',information)
 
 app.listen(port, () => {
   console.log(`${pkg.name} listening on port ${port}`)
